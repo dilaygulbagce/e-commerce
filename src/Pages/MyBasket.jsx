@@ -5,17 +5,20 @@ import { useNavigate } from "react-router-dom";
 import BasketList from "../Components/Basket/BasketList";
 import RegisterForm from "../Components/RegisterForm/RegisterForm";
 import { clearBasket } from "../reduxStore/basket";
+import { register } from "../reduxStore/user";
 
 const MyBasket = () => {
   const basketItems = useSelector((state) => state.basket.basketItems);
+  const user = useSelector((state) => state.user.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [purchaseDetails, setPurchaseDetails] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    address: "",
+    name: user.name,
+    surname: user.surname,
+    email: user.email,
+    address: user.address,
     card: "",
     expireDate: "",
     cvc: "",
@@ -23,7 +26,7 @@ const MyBasket = () => {
 
   const [show, setShow] = useState(false);
 
-  const register = () => {
+  const registerFunction = () => {
     if (
       purchaseDetails.name != "" &&
       purchaseDetails.surname != "" &&
@@ -33,11 +36,15 @@ const MyBasket = () => {
       purchaseDetails.expireDate != "" &&
       purchaseDetails.cvc != ""
     ) {
+      dispatch(register({user: {name: purchaseDetails.name,
+        surname: purchaseDetails.surname,
+        email: purchaseDetails.email,
+        address:purchaseDetails.address}}));
       setShow(false);
-      dispatch(clearBasket());
       sendEmail(purchaseDetails.email, generateBody());
-      alert("satın alma onaylandı");
+      alert("Satın alma onaylandı");
       navigate("/");
+      dispatch(clearBasket());
     } else {
       alert("Boş alan bırakılamaz!");
     }
@@ -50,7 +57,7 @@ const MyBasket = () => {
       From: "webprojed@gmail.com",
       Subject: "E-ticaret Projesi",
       Body: body,
-    }).then((message) => alert(message));
+    }).then((message) => alert("Mail başarıyla gönderildi!"));
   };
 
   const checkoutFunction = () => {
@@ -113,7 +120,7 @@ const MyBasket = () => {
         purchaseDetails={purchaseDetails}
         setPurchaseDetails={setPurchaseDetails}
         totalPrice={calcPrice()}
-        register={register}
+        register={registerFunction}
         show={show}
         setShow={setShow}
       />

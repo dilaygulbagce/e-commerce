@@ -26,8 +26,8 @@ const HomePage = () => {
 
     arr = arr.filter((x) => {
       return (
-        x.name.toLowerCase().includes(search) ||
-        x.detail.toLowerCase().includes(search)
+        x.name.toLowerCase().includes(search.toLowerCase()) ||
+        x.detail.toLowerCase().includes(search.toLowerCase())
       );
     });
     return arr;

@@ -29,6 +29,7 @@ const RegisterForm = (props) => {
                     name: e.target.value,
                   })
                 }
+                defaultValue={purchaseDetails.name}
                 type="text"
               />
             </Form.Group>
@@ -42,6 +43,7 @@ const RegisterForm = (props) => {
                     surname: e.target.value,
                   })
                 }
+                defaultValue={purchaseDetails.surname}
                 type="text"
               />
             </Form.Group>
@@ -55,6 +57,7 @@ const RegisterForm = (props) => {
                   email: e.target.value,
                 })
               }
+              defaultValue={purchaseDetails.email}
               type="email"
             />
           </Form.Group>
@@ -68,6 +71,7 @@ const RegisterForm = (props) => {
                   address: e.target.value,
                 })
               }
+              defaultValue={purchaseDetails.address}
               type="text"
             />
           </Form.Group>

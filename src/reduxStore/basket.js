@@ -7,8 +7,8 @@ export const basketSlice = createSlice({
     addItemToBasket: (state, action) => {
       let tmp = [...state.basketItems];
       const product = action.payload.product;
-      const existingProduct = tmp.find((x) => x.product.id == product.id);
-      if (existingProduct != undefined) {
+      const existingProduct = tmp.find((x) => x.product.id == product.id); // eklenmek istenen urunun sepette olup olmadigini kontrol eder
+      if (existingProduct != undefined) { // urun var
         existingProduct.quantity += 1;
         tmp = tmp.map((x) => {
           if (x.product.id == product.id) {
@@ -27,7 +27,7 @@ export const basketSlice = createSlice({
     removeFromBasket: (state, action) => {
       let tmp = [...state.basketItems];
       const product = action.payload.product;
-      const existingProduct = tmp.find((x) => x.product.id == product.id);
+      const existingProduct = tmp.find((x) => x.product.id == product.id); // sepetten cikarilmak istenen urunu bulur
       if (existingProduct.quantity > 1) {
         existingProduct.quantity -= 1;
         tmp = tmp.map((x) => {
@@ -37,11 +37,12 @@ export const basketSlice = createSlice({
           return x;
         });
       } else {
-        tmp = tmp.filter((x) => x.product.id !== product.id);
+        tmp = tmp.filter((x) => x.product.id !== product.id); // sepetten urun cikarilir
       }
 
       state.basketItems = tmp;
     },
+    
     clearBasket: (state, action) => {
       state.basketItems = [];
     },

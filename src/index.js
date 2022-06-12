@@ -8,10 +8,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import basketReducer from "./reduxStore/basket";
+import useReducer from "./reduxStore/user";
 
 const store = configureStore({
   reducer: {
     basket: basketReducer,
+    user: useReducer
   },
 });
 
