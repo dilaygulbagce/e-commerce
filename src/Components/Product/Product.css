@@ -1,0 +1,27 @@
+.product-list {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin: 10px;
+}
+
+.product-detail {
+  margin: 10px 50px 10px 50px;
+  gap: 50px;
+}
+
+.product-detail-row-1 {
+  display: flex;
+  margin: 50px;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.detail-image {
+  margin-top: 50px;
+  width: 30%;
+  object-fit: cover;
+}
