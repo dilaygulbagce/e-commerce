@@ -28,13 +28,13 @@ const MyBasket = () => {
 
   const registerFunction = () => {
     if (
-      purchaseDetails.name != "" &&
-      purchaseDetails.surname != "" &&
-      purchaseDetails.email != "" &&
-      purchaseDetails.address != "" &&
-      purchaseDetails.card != "" &&
-      purchaseDetails.expireDate != "" &&
-      purchaseDetails.cvc != ""
+      purchaseDetails.name !== "" &&
+      purchaseDetails.surname !== "" &&
+      purchaseDetails.email !== "" &&
+      purchaseDetails.address !== "" &&
+      purchaseDetails.card !== "" &&
+      purchaseDetails.expireDate !== "" &&
+      purchaseDetails.cvc !== ""
     ) {
       dispatch(register({user: {name: purchaseDetails.name,
         surname: purchaseDetails.surname,
@@ -42,7 +42,7 @@ const MyBasket = () => {
         address:purchaseDetails.address}}));
       setShow(false);
       sendEmail(purchaseDetails.email, generateBody());
-      alert("Satın alma onaylandı");
+      alert("Satın alma onaylandı! Kullanıcı bilgileriniz bir sonraki alışverişte kullanılmak üzere kaydedildi.");
       navigate("/");
       dispatch(clearBasket());
     } else {
@@ -55,16 +55,38 @@ const MyBasket = () => {
       SecureToken: "cc892906-4362-44ad-bc55-acd4e6d61278",
       To: to,
       From: "webprojed@gmail.com",
-      Subject: "E-ticaret Projesi",
+      Subject: "E-Tech Alışveriş Özeti",
       Body: body,
-    }).then((message) => alert("Mail başarıyla gönderildi!"));
+    }).then((message) => alert("Alışveriş özetiniz mail adresinize gönderildi."));
+  };
+
+  const generateBody = () => {
+    let body = "";
+
+    body +=
+      "Fatura Sahibi: " +
+      purchaseDetails.name + " " + purchaseDetails.surname +
+      " ";
+
+    body += "Adres: " + purchaseDetails.address + " ";
+
+    body += "Urunler: ";
+
+    basketItems.forEach((x) => {
+      body +=
+        x.quantity + " x " + x.product.name + ", " + x.product.price + "₺ ";
+    });
+
+    body += "Toplam tutar: " + calcPrice() + "₺ ";
+
+    return body;
   };
 
   const checkoutFunction = () => {
     if (basketItems.length > 0) {
       setShow(true);
     } else {
-      alert("Buy something!");
+      alert("Sepete Ürün Ekleyin!");
       navigate("/");
     }
   };
@@ -77,43 +99,18 @@ const MyBasket = () => {
     return totalPrice;
   };
 
-  const generateBody = () => {
-    let body = "";
-
-    body +=
-      "Fatura Sahibi: " +
-      purchaseDetails.name +
-      " " +
-      purchaseDetails.surname +
-      "\n";
-
-    body += "Adres: " + purchaseDetails.address;
-
-    body += "\n\nUrunler:\n";
-
-    basketItems.forEach((x) => {
-      body +=
-        x.quantity + " x " + x.product.name + ", " + x.product.price + "₺\n";
-    });
-
-    body += "\nToplam tutar: " + calcPrice() + "₺";
-
-    return body;
-  };
-
   return (
     <div
       style={{ marginTop: "100px", marginLeft: "60px", marginRight: "60px" }}
     >
-      <h2>Toplam Tutar: {calcPrice()}₺</h2>
+      <BasketList basketItems={basketItems} />
+      <br />
+      <br />
+      <h4>Toplam Tutar: {calcPrice()}₺</h4>
       <br />
       <Button variant="success" onClick={checkoutFunction}>
-        Checkout
+        Sepeti Onayla
       </Button>
-      <br />
-      <br />
-
-      <BasketList basketItems={basketItems} />
 
       <br />
       <RegisterForm

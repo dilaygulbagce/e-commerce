@@ -1,5 +1,6 @@
 .basket-image {
   width: 80px;
+  text-align: center;
   object-fit: cover;
 }
 

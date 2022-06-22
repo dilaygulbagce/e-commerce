@@ -2,26 +2,18 @@ import React from "react";
 import { Button, Modal, Form, Stack } from "react-bootstrap";
 
 const RegisterForm = (props) => {
-  const {
-    totalPrice,
-    show,
-    setShow,
-    register,
-    purchaseDetails,
-    setPurchaseDetails,
-  } = props;
+  const {totalPrice, show, setShow, register, purchaseDetails, setPurchaseDetails} = props;
   return (
     <Modal show={show} onHide={() => setShow(false)}>
       <Modal.Header closeButton>
-        <Modal.Title>Register & Purchase</Modal.Title>
+        <Modal.Title>Üye Ol & Satın Al</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <h5>User Details</h5>
-
+          <h5>Kullanıcı Bilgileri</h5>
           <Stack direction="horizontal" gap={3}>
             <Form.Group className="mb-3 ">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Ad</Form.Label>
               <Form.Control
                 onChange={(e) =>
                   setPurchaseDetails({
@@ -35,7 +27,7 @@ const RegisterForm = (props) => {
             </Form.Group>
 
             <Form.Group className="mb-3 ">
-              <Form.Label>Surname</Form.Label>
+              <Form.Label>Soyad</Form.Label>
               <Form.Control
                 onChange={(e) =>
                   setPurchaseDetails({
@@ -49,7 +41,7 @@ const RegisterForm = (props) => {
             </Form.Group>
           </Stack>
           <Form.Group className="mb-3 ">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>E-Mail</Form.Label>
             <Form.Control
               onChange={(e) =>
                 setPurchaseDetails({
@@ -63,7 +55,7 @@ const RegisterForm = (props) => {
           </Form.Group>
 
           <Form.Group className="mb-3 ">
-            <Form.Label>Address</Form.Label>
+            <Form.Label>Adres</Form.Label>
             <Form.Control
               onChange={(e) =>
                 setPurchaseDetails({
@@ -77,10 +69,10 @@ const RegisterForm = (props) => {
           </Form.Group>
           <br />
           <hr></hr>
-          <h5>Card Details</h5>
+          <h5>Ödeme Bilgileri</h5>
 
           <Form.Group className="mb-3 ">
-            <Form.Label>Card Number</Form.Label>
+            <Form.Label>Kart Numarası</Form.Label>
             <Form.Control
               onChange={(e) =>
                 setPurchaseDetails({
@@ -93,8 +85,9 @@ const RegisterForm = (props) => {
           </Form.Group>
           <Stack direction="horizontal" gap={3}>
             <Form.Group className="mb-3 ">
-              <Form.Label>Expire Date</Form.Label>
+              <Form.Label>Son Kullanım Tarihi</Form.Label>
               <Form.Control
+                placeholder="AA/YY"
                 onChange={(e) =>
                   setPurchaseDetails({
                     ...purchaseDetails,
@@ -104,7 +97,6 @@ const RegisterForm = (props) => {
                 type="text"
               />
             </Form.Group>
-
             <Form.Group className="mb-3 ">
               <Form.Label>CVC</Form.Label>
               <Form.Control
@@ -121,15 +113,15 @@ const RegisterForm = (props) => {
         </Form>
         <br />
         <hr></hr>
-        <h3>Total: {totalPrice}₺</h3>
+        <h3>Toplam Tutar: {totalPrice}₺</h3>
       </Modal.Body>
       <Modal.Footer>
         <Stack direction="horizontal" gap={3}>
           <Button variant="danger" onClick={() => setShow(false)}>
-            Cancel
+            İptal
           </Button>
           <Button variant="primary" onClick={register}>
-            Purchase
+            Satın Al
           </Button>
         </Stack>
       </Modal.Footer>

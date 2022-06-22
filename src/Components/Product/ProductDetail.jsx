@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Container, Stack, Table } from "react-bootstrap";
+import { Button, Card, Stack, Table } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addItemToBasket } from "../../reduxStore/basket";
@@ -9,7 +9,6 @@ const ProductDetail = (props) => {
   const { product } = props;
 
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const addToBasketFunction = () => {
@@ -18,6 +17,7 @@ const ProductDetail = (props) => {
         product: product,
       })
     );
+    alert("Ürün sepetinize eklendi.");
   };
 
   return (
@@ -29,7 +29,7 @@ const ProductDetail = (props) => {
         Geri Dön
       </Button>
       <Stack direction="horizontal" className="p-5" gap={3}>
-        <img className="detail-image" src={product.image} />
+        <img className="detail-image" src={product.image} alt="Ürün resmi yok"/>
         <Card.Body>
           <Stack
             direction="horizontal"
@@ -48,10 +48,8 @@ const ProductDetail = (props) => {
             </div>
           </Stack>
           <Card.Text>{product.detail}</Card.Text>
-
           <br />
           <br />
-
           <Card.Subtitle>Özellikler</Card.Subtitle>
           <br />
           <Table className="text-start" striped bordered hover>

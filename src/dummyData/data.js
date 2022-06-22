@@ -1,8 +1,8 @@
 export const categories = [
-  { id: 1, name: "Computer" },
-  { id: 2, name: "Phone" },
+  { id: 1, name: "Bilgisayar" },
+  { id: 2, name: "Akıllı Telefon" },
   { id: 3, name: "Tablet" },
-  { id: 4, name: "Smart Watch" },
+  { id: 4, name: "Akıllı Saat" },
 ];
 
 export const brands = [

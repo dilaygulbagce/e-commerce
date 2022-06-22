@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Row, Stack } from "react-bootstrap";
+import { Button, Card, Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
@@ -17,11 +17,16 @@ const ProductItem = (props) => {
         product: product,
       })
     );
+    alert("Ürün sepetinize eklendi.");
   };
 
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img className="p-5" variant="top" src={product.image} />
+      <Card.Img className="p-5" 
+      variant="top" 
+      src={product.image} 
+      alt="Ürün resmi yok"
+      onClick={() => navigate("/product/" + product.id)} />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
@@ -33,7 +38,7 @@ const ProductItem = (props) => {
             onClick={() => navigate("/product/" + product.id)}
             variant="primary"
           >
-            Details
+            Teknik Özellikler
           </Button>
           <Button onClick={addToBasketFunction} variant="success">
             +

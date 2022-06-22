@@ -1,13 +1,16 @@
 import React from "react";
-import { Button, Container, Stack, Table } from "react-bootstrap";
+import { Button, Stack } from "react-bootstrap";
 import "./Basket.css";
+
 const BasketListItem = (props) => {
   const { quantity, product, addItem, popItem } = props;
 
   return (
     <tr>
       <td>
-        <img className="basket-image" src={product.image} />
+        <center>
+          <img className="basket-image" src={product.image} alt="Ürün Resmi Yok" />
+        </center>
       </td>
       <td className="table-row-text">{product.name}</td>
       <td className="table-row-text">{quantity}</td>

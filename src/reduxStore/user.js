@@ -7,7 +7,6 @@ export const userSlice = createSlice({
   email: "",
   address: ""}
  },
-
   reducers: {
     register: (state, action) => {
       state.user = action.payload.user;

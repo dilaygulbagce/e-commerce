@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Container,
-  Form,
-  FormControl,
-  Nav,
-  NavDropdown,
-  Stack,
-} from "react-bootstrap";
+import {Button, Container, Form, FormControl, Nav, NavDropdown, Stack} from "react-bootstrap";
 import { brands, categories } from "../../dummyData/data";
 
 const Filter = (props) => {
-  const { setBrand, brand, setCategory, category, setSearch, search } = props;
-
+  const { setBrand, brand, setCategory, category, setSearch } = props;
   const [text, setText] = useState("");
 
   return (
@@ -23,10 +14,10 @@ const Filter = (props) => {
           style={{ maxHeight: "100px" }}
           navbarScroll
         >
-          <NavDropdown title="Category">
+          <NavDropdown title="Kategoriler">
             {categories.map((x, index) => (
               <NavDropdown.Item
-                style={{ color: category == x.id ? "blue" : "black" }}
+                style={{ color: category === x.id ? "blue" : "black" }}
                 onClick={() => setCategory(x.id)}
                 key={x.id}
               >
@@ -35,16 +26,16 @@ const Filter = (props) => {
             ))}
             <NavDropdown.Divider />
             <NavDropdown.Item
-              style={{ color: category == "" ? "blue" : "black" }}
+              style={{ color: category === "" ? "blue" : "black" }}
               onClick={() => setCategory("")}
             >
-              Clear Filter
+              Filtreyi Temizle
             </NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Brand">
+          <NavDropdown title="Markalar">
             {brands.map((x, index) => (
               <NavDropdown.Item
-                style={{ color: brand == x.id ? "blue" : "black" }}
+                style={{ color: brand === x.id ? "blue" : "black" }}
                 onClick={() => setBrand(x.id)}
                 key={x.id}
               >
@@ -53,10 +44,10 @@ const Filter = (props) => {
             ))}
             <NavDropdown.Divider />
             <NavDropdown.Item
-              style={{ color: brand == "" ? "blue" : "black" }}
+              style={{ color: brand === "" ? "blue" : "black" }}
               onClick={() => setBrand("")}
             >
-              Clear Filter
+              Filtreyi Temizle
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
@@ -65,13 +56,13 @@ const Filter = (props) => {
             onChange={(e) => setText(e.target.value)}
             type="search"
             value={text}
-            placeholder="Search"
+            placeholder="Arama"
             className="me-2"
             aria-label="Search"
           />
           <Stack direction="horizontal" gap={3}>
             <Button variant="outline-success" onClick={() => setSearch(text)}>
-              Search
+              Ara
             </Button>
             <Button
               variant="primary"
@@ -80,7 +71,7 @@ const Filter = (props) => {
                 setText("");
               }}
             >
-              Clear
+              Temizle
             </Button>
           </Stack>
         </Form>

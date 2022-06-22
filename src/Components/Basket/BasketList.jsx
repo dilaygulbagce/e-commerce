@@ -27,17 +27,17 @@ const BasketList = (props) => {
 
   return (
     <Container>
-      {basketItems.length == 0 ? (
-        <h5 style={{ color: "red" }}>Basket is empty!</h5>
+      {basketItems.length === 0 ? (
+        <h5>Sepetiniz Boş!</h5>
       ) : (
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Image</th>
-              <th>Product</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Options</th>
+              <th>Ürün Resmi</th>
+              <th>Ürün Adı</th>
+              <th>Adet</th>
+              <th>Tutar</th>
+              <th>Seçenekler</th>
             </tr>
           </thead>
           <tbody>
